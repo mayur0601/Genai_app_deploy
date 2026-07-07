@@ -59,5 +59,6 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          git remote add space https://huggingface.co/spaces/CNProgram-team/genai-app || true
-          git push https://user:${HF_TOKEN}@huggingface.co/spaces/CNProgram-team/genai-app main --force
+          git remote add space https://huggingface.co/spaces/mayur0601/genai-app || true
+          git push https://user:${HF_TOKEN}@huggingface.co/spaces/mayur0601/genai-app main --force
+          echo "Pushed on HF successfully"
