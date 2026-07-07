@@ -1,0 +1,8 @@
+README.md
+genai_app.py
+pyproject.toml
+genai_app.egg-info/PKG-INFO
+genai_app.egg-info/SOURCES.txt
+genai_app.egg-info/dependency_links.txt
+genai_app.egg-info/requires.txt
+genai_app.egg-info/top_level.txt

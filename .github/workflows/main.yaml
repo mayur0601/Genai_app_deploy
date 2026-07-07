@@ -1,0 +1,22 @@
+name: Build and Test GenAI App
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t genai-app:${{ github.sha }} .
+
+      - name: Test Docker image
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: docker run --rm -e GEMINI_API_KEY="${{ secrets.GEMINI_API_KEY }}" genai-app:${{ github.sha }} python -c "import genai_app; print('App module loaded successfully')"
+
+
