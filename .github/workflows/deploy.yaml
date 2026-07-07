@@ -62,3 +62,20 @@ jobs:
           git remote add space https://huggingface.co/spaces/mayur0601/genai-app || true
           git push https://user:${HF_TOKEN}@huggingface.co/spaces/mayur0601/genai-app main --force
           echo "Pushed on HF successfully"
+
+      - name: Set Hugging Face Space secret
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          pip install --quiet huggingface_hub
+          python -c "
+          from huggingface_hub import HfApi
+          import os
+          HfApi(token=os.environ['HF_TOKEN']).add_space_secret(
+              repo_id='mayur0601/genai-app',
+              key='GEMINI_API_KEY',
+              value=os.environ['GEMINI_API_KEY'],
+          )
+          print('GEMINI_API_KEY secret set on Hugging Face Space')
+          "
